@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import re
+from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from datetime import datetime, timezone
 
@@ -40,16 +41,18 @@ class RequestContext:
     token: ApiToken
 
 
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    init_db()
+    yield
+
+
 app = FastAPI(
     title="SaaS Multi-tenant Billing API",
     description="Production-style baseline API for tenant management, billing plans, and Stripe webhook processing.",
     version="0.1.0",
+    lifespan=lifespan,
 )
-
-
-@app.on_event("startup")
-def on_startup() -> None:
-    init_db()
 
 
 def validate_email(email: str) -> None:
