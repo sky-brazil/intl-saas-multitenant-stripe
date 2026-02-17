@@ -1,0 +1,10 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: "sqlite:////app/data/app.db"
+      STRIPE_WEBHOOK_SECRET: "change-me"
+    volumes:
+      - ./data:/app/data
