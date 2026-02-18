@@ -1,3 +1,5 @@
+﻿> Public demo page: https://sky-brazil.github.io/intl-saas-multitenant-stripe/
+
 # 01 - Multi-tenant SaaS Billing (Stripe-ready)
 
 Production-style API foundation for B2B SaaS products that need:
@@ -87,3 +89,4 @@ When `STRIPE_WEBHOOK_SECRET` is set, the endpoint validates the request body usi
 Idempotency is enforced through:
 
 - `X-Stripe-Event-Id` (or payload `id` fallback)
+
